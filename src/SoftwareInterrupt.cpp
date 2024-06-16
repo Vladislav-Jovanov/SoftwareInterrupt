@@ -10,16 +10,16 @@ Software_Interrupt::~Software_Interrupt(){
     //dtor
 }
 
-void Software_Interrupt::setup_OI(PinMode Mode){
+void Software_Interrupt::setup_SI(int Mode){
     if (Mode!=OUTPUT){    
         pinMode(PIN, Mode);
-        setup=(setup & true);
+        setup=true;
     }else{
         setup=false;    
     }                              
 }
 
-void Software_Interrupt::attach_SI(void (*interrupt_func)(),PinStatus Status){
+void Software_Interrupt::attach_SI(void (*interrupt_func)(),int Status){
   if (interrupt_func==NULL){
     attach=false;
   }else{
@@ -36,8 +36,8 @@ void Software_Interrupt::detach_SI(){
 void Software_Interrupt::main(){
     if(setup & attach){
        PIN_state=digitalRead(PIN);
-       if ((STATUS==RISING & PIN_old_state==LOW & PIN_State==HIGH)|| (STATUS==FALLING & PIN_old_state==HIGH & PIN_State==LOW) || (STATUS==CHANGE & PIN_old_state!=PIN_State)){
-            PIN_old_state=PIN_State;             
+       if ((STATUS==RISING & PIN_old_state==LOW & PIN_state==HIGH)|| (STATUS==FALLING & PIN_old_state==HIGH & PIN_state==LOW) || (STATUS==CHANGE & PIN_old_state!=PIN_state)){
+            PIN_old_state=PIN_state;             
             interrupt_handle();             
        }
     }                               

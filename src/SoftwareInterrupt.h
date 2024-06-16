@@ -1,22 +1,23 @@
 #ifndef SOFTWAREINTERRUPT_H
 #define SOFTWAREINTERRUPT_H
 
-#include <Common.h>
+#include <Arduino.h>
 
 class Software_Interrupt
 {
     public:
         Software_Interrupt(int Pin);
         virtual ~Software_Interrupt();
-        void setup_SI(PinMode Mode=INPUT);
-        void attach_SI(void (*interrupt_func)()=NULL,PinStatus Status=CHANGE);
+        void setup_SI(int Mode=INPUT);
+        void attach_SI(void (*interrupt_func)()=NULL,int Status=CHANGE);
+        void detach_SI();
         void main();
     protected:
         
         
     private:
         void (*interrupt_handle)();
-        PinStatus STATUS;
+        int STATUS;
         bool setup=false;
         bool attach=false;
         bool PIN_state;
