@@ -10,8 +10,8 @@ void Interrupt_Action(){
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  myInterrupt.setup_SI();
-  myInterrupt.attach_SI(&Interrupt_Action, CHANGE);
+  myInterrupt.setup();
+  myInterrupt.attachInterrupt(&Interrupt_Action, CHANGE);
 
 }
 
