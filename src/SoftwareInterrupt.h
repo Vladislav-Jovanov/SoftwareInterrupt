@@ -27,4 +27,4 @@ class Software_Interrupt
 
 };
 
-#endif // OPTICINTERRUPT_H
+#endif // SOFTWAREINTERRUPT
