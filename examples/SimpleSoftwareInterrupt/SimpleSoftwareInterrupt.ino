@@ -9,8 +9,8 @@ void Interrupt_Action(){
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  myInterrupt.setup();
+  Serial.begin(115200);
+  myInterrupt.setup(INPUT);
   myInterrupt.attachInterrupt(&Interrupt_Action, CHANGE);
 
 }
