@@ -14,7 +14,7 @@ void Software_Interrupt::setup(int mode){
     if ((mode==INPUT) || (mode==INPUT_PULLUP)){
         pinMode(PIN, mode);
         setup_finished=true;
-    }              
+    }
 }
 
 void Software_Interrupt::attachInterrupt(void (*interrupt_func)(),int Status, int delay_value){
@@ -25,7 +25,7 @@ void Software_Interrupt::attachInterrupt(void (*interrupt_func)(),int Status, in
     STATUS=Status;
     delay=delay_value;
     attach_finished=true;
-    init=true;    
+    init=true;
   }
 }
 void Software_Interrupt::detachInterrupt(){
@@ -50,12 +50,12 @@ void Software_Interrupt::main(){
                 PIN_state=digitalRead(PIN);
             }else{
                 if (millis()-current_time>=delay){
-                    time_passed=true;                
+                    time_passed=true;
                 }
-                return;            
+                return;
             }
-            if ((STATUS==RISING & PIN_old_state==LOW & PIN_state==HIGH)|| (STATUS==FALLING & PIN_old_state==HIGH & PIN_state==LOW) || (STATUS==CHANGE & PIN_old_state!=PIN_state)){        
-                interrupt_handler();     
+            if ((STATUS==RISING & PIN_old_state==LOW & PIN_state==HIGH)|| (STATUS==FALLING & PIN_old_state==HIGH & PIN_state==LOW) || (STATUS==CHANGE & PIN_old_state!=PIN_state)){
+                interrupt_handler();
             }
             if (PIN_old_state!=PIN_state){
                 PIN_old_state=PIN_state;
@@ -65,6 +65,6 @@ void Software_Interrupt::main(){
                 }
             }
         }
-    }                               
+    }
 }
 
